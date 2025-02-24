@@ -1,3 +1,10 @@
+import React from "react";
+import ProductCard from "./ui/product-card";
+
 export default function Home() {
-  return;
+  return (
+    <div>
+      <ProductCard />
+    </div>
+  );
 }
