@@ -43,22 +43,22 @@ export default function ProductCard() {
   };
 
   return (
-    <div className="w-full sm:w-72 md:w-80 lg:w-96 bg-white shadow-lg rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 p-4">
+    <div className="w-fit overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 shadow-lg transition-shadow duration-300 hover:shadow-xl">
       {/* Product Image with Icons */}
       <div
-        className="relative w-full h-56 sm:h-48 bg-cover bg-center transition-all duration-300"
+        className="relative h-56 w-full bg-cover bg-center transition-all duration-300 sm:h-48"
         style={{ backgroundImage: `url(${productImages[currentImage]})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Wishlist Heart Icon */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white p-2 sm:p-3 rounded-full shadow-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-red-100">
-          <FaHeart className="text-red-500 text-sm sm:text-lg" />
+        <div className="absolute left-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-red-100 sm:left-3 sm:top-3 sm:p-3">
+          <FaHeart className="text-sm text-red-500 sm:text-lg" />
         </div>
 
         {/* Cart Icon */}
-        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-white p-2 sm:p-3 rounded-full shadow-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-gray-100">
-          <PiShoppingCartSimpleFill className="text-gray-700 text-sm sm:text-lg" />
+        <div className="absolute right-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-gray-100 sm:right-3 sm:top-3 sm:p-3">
+          <PiShoppingCartSimpleFill className="text-sm text-gray-700 sm:text-lg" />
         </div>
 
         {/* Arrows for image switching (only show on hover) */}
@@ -66,7 +66,7 @@ export default function ProductCard() {
           <>
             {/* Left Arrow */}
             <button
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 transition-transform duration-300 ease-in-out hover:scale-110"
+              className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
               onClick={prevImage}
             >
               <FaChevronLeft className="text-lg" />
@@ -74,7 +74,7 @@ export default function ProductCard() {
 
             {/* Right Arrow */}
             <button
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 transition-transform duration-300 ease-in-out hover:scale-110"
+              className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
               onClick={nextImage}
             >
               <FaChevronRight className="text-lg" />
@@ -84,50 +84,50 @@ export default function ProductCard() {
       </div>
 
       {/* Rating & Reviews */}
-      <div className="flex items-center gap-1 mt-3 px-2">
+      <div className="mt-3 flex items-center gap-1 px-2">
         {/* Star Rating */}
         {Array.from({ length: 5 }, (_, index) => {
           if (rating >= index + 1)
             return (
               <FaStar
                 key={index}
-                className="text-yellow-500 text-sm sm:text-lg"
+                className="text-sm text-yellow-500 sm:text-lg"
               />
             );
           else if (rating >= index + 0.5)
             return (
               <FaStarHalfAlt
                 key={index}
-                className="text-yellow-500 text-sm sm:text-lg"
+                className="text-sm text-yellow-500 sm:text-lg"
               />
             );
           else
             return (
               <FaRegStar
                 key={index}
-                className="text-gray-400 text-sm sm:text-lg"
+                className="text-sm text-gray-400 sm:text-lg"
               />
             );
         })}
 
         {/* Number of Reviews */}
-        <p className="text-gray-600 text-xs sm:text-sm ml-2">
+        <p className="ml-2 text-xs text-gray-600 sm:text-sm">
           ({totalReviews} reviews)
         </p>
       </div>
 
       {/* Product Details */}
       <div className="p-2 sm:p-4">
-        <h1 className="text-lg sm:text-xl font-semibold text-gray-800">
+        <h1 className="text-lg font-semibold text-gray-800 sm:text-xl">
           Bracelet 1
         </h1>
-        <p className="text-xs sm:text-sm text-gray-600 mt-1">
+        <p className="mt-1 text-xs text-gray-600 hidden md:block">
           Elegant and stylish bracelet to elevate your look.
         </p>
 
         {/* Price */}
-        <div className="flex items-center justify-start mt-2 sm:mt-3">
-          <p className="text-[#1E96FC] font-bold text-base sm:text-lg">$100</p>
+        <div className="mt-2 flex items-center justify-start sm:mt-3">
+          <p className="text-base font-bold text-[#1E96FC] sm:text-lg">$100</p>
         </div>
       </div>
     </div>
