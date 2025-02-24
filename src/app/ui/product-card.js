@@ -38,7 +38,7 @@ export default function ProductCard() {
   // Function to go to the previous image
   const prevImage = () => {
     setCurrentImage(
-      (prev) => (prev - 1 + productImages.length) % productImages.length
+      (prev) => (prev - 1 + productImages.length) % productImages.length,
     );
   };
 
@@ -121,7 +121,7 @@ export default function ProductCard() {
         <h1 className="text-lg font-semibold text-gray-800 sm:text-xl">
           Bracelet 1
         </h1>
-        <p className="mt-1 text-xs text-gray-600 hidden md:block">
+        <p className="mt-1 text-xs text-gray-600 hidden md:block">  
           Elegant and stylish bracelet to elevate your look.
         </p>
 
