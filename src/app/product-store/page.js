@@ -4,6 +4,7 @@ import { Josefin_Sans } from "next/font/google";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Heading from "../ui/heading";
+import ProductCard from "../ui/product-card";
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
@@ -66,8 +67,12 @@ function ProductStore() {
         )}
 
         {/* Example Content */}
-        <div className="text-center">
-          <h1 className="text-lg">Products go here</h1>
+        <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4">
+          <ProductCard name="Product 1" price="$10" />
+          <ProductCard name="Product 2" price="$15" />
+          <ProductCard name="Product 3" price="$20" />
+          <ProductCard name="Product 4" price="$25" />
+          <ProductCard name="Product 5" price="$30" />
         </div>
       </div>
     </>
