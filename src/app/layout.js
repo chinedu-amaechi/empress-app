@@ -1,5 +1,9 @@
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
+import { CartProvider } from "./ui/cartcontext";
+import { WishListProvider } from "./ui/cartcontext";
+import Footer from "./ui/footer";
+import Navbar from "./ui/navbar";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -11,7 +15,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${openSans.className}`}>{children}</body>
+      <body className={`${openSans.className}`}>
+        <CartProvider>
+          <WishListProvider>
+            {/* <Loading/> */}
+            <header className="sticky top-0 left-0 z-50"><Navbar/></header>
+            {children}
+            <footer><Footer/></footer>
+          </WishListProvider>
+        </CartProvider>
+      </body>
     </html>
   );
 }
