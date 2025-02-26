@@ -1,12 +1,8 @@
 import React from "react";
-import ProductCard from "./ui/product-card";
-import SignIn from "./auth/sign-in/page";
+import HomePage from "./home/page";
 
 export default function Home() {
   return (
-    <div>
-      <ProductCard />
-      <SignIn />
-    </div>
+    <HomePage classname='z-10'/>
   );
 }
