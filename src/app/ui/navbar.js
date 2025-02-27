@@ -40,7 +40,7 @@ export default function Navbar() {
         {/* Contact Us */}
         <div
           className="flex items-center cursor-pointer hover:bg-gray-200 py-2 rounded-full"
-          onClick={() => navigateTo('/pages/contact')} // Navigate to the contact page
+          onClick={() => navigateTo('/contact/')} // Navigate to the contact page
         >
           <IoCallOutline size={22} className='mx-2' />
         </div>
@@ -62,7 +62,7 @@ export default function Navbar() {
           </div>
           <div
             className="cursor-pointer"
-            onClick={() => navigateTo('/pages/accounts')}
+            onClick={() => navigateTo('/accounts/')}
           >
             <UserDropdown />
           </div>

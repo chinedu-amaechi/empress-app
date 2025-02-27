@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { useWishlist } from "./cartcontext";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const WishlistDropdown = () => {
@@ -14,7 +13,14 @@ const WishlistDropdown = () => {
         routerWishlist.push(path)
     }
 
-    const { wishlistItems, removeFromWishlist} = useWishlist();
+    const [wishlistItems, setWishlistItems] = useState([
+        { id: 1, name: "Product 1", image: "/bracelet-01.jpg" },
+        { id: 2, name: "Product 2", image: "/bracelet-02.jpg" },
+    ]);
+
+    const removeFromWishlist = (id) => {
+        setWishlistItems(wishlistItems.filter(item => item.id !== id));
+    }
 
     const [wishlistDropdown, setWishlistDropdown] = useState(false);
     const [wishlistDropdownPosition, setWishlistDropdownPosition] = useState({top:0, left:0})
@@ -52,7 +58,7 @@ const WishlistDropdown = () => {
 
 
     return(<div className="relative cursor-pointer w-full" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={wishlistIconRef}>
-        <div className='flex flex-col justify-center items-center cursor-pointer' onClick={() => navigateTo('/pages/wishlist')}>
+        <div className='flex flex-col justify-center items-center cursor-pointer' onClick={() => navigateTo('/wishlist/')}>
         <FaRegHeart size={20}/>
         </div>
         {wishlistDropdown && ReactDOM.createPortal(
@@ -61,7 +67,7 @@ const WishlistDropdown = () => {
                     {wishlistItems.length > 0 ? (
                         wishlistItems.map((item) => (
                             <li key={item.id} className="flex justify-between items-center p-2 border-b">
-                                <Image src={item.image} width={100} height={100} alt={item.name} className="rounded"/>
+                                <Image src={item.image} width={75} height={75} alt={item.name} className="rounded"/>
                                 <p className="text-sm">
                                     {item.name}
                                 </p>
@@ -76,7 +82,7 @@ const WishlistDropdown = () => {
                 </ul>
                 {wishlistItems.length > 0 && (
                         <div className="flex items-center justify-center bg-white">
-                            <div className="group flex justify-center items-center w-fit p-2" onClick={() => navigateTo('/pages/wishlist')}>
+                            <div className="group flex justify-center items-center w-fit p-2" onClick={() => navigateTo('/wishlist/')}>
                                 <button className="relative text-lg font-semibold">
                                     View Favorites
                                     <span className="absolute left-0 bottom-[2px] h-[2px] w-0 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>

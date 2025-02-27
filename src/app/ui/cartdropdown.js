@@ -13,14 +13,31 @@ import { useRouter } from "next/navigation";
 
 
 const CartDropdown = ({}) => {
-      const routerCart = useRouter();
+    const routerCart = useRouter();
     
-      const navigateTo = (path) => {
+    const navigateTo = (path) => {
         routerCart.push(path);
-      };
+    };
+    
+    const [cartItems, setCartItems] = useState([
+        { id: 1, name: "Product 1", price: 29.99, image: "/bracelet-01.jpg" },
+        { id: 2, name: "Product 2", price: 49.99, image: "/bracelet-02.jpg" },
+        // Add more items as needed
+    ]);
+
+    const removeFromCart = (id) => {
+        setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    };
+
+    const updateCartItemCount = (id, count) => {
+        setCartItems((prevItems) =>
+            prevItems.map((item) =>
+                item.id === id ? { ...item, count: count } : item
+            )
+        );
+    };
 
 
-    const {cartItems, removeFromCart, updateCartItemCount} = useCart();
     const [cartDropdown, setCartDropdown] = useState(false);
     const [cartDropdownPosition, setCartDropdownPosition] = useState({ top: 0, left: 0 });
     const cartIconRef = useRef(null);
@@ -87,7 +104,7 @@ const CartDropdown = ({}) => {
         </div>
         {cartItems.length > 0 && (
                 <div className="flex items-center justify-center bg-white">
-                        <div className="group flex justify-center items-center w-fit p-2 my-1" onClick={() => navigateTo('/pages/cart')}>
+                        <div className="group flex justify-center items-center w-fit p-2 my-1" onClick={() => navigateTo('/cart/')}>
                             <button className="relative text-lg font-semibold">
                                 View Cart
                                 <span className="absolute left-0 bottom-[2px] h-[2px] w-0 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
@@ -105,7 +122,7 @@ const CartDropdown = ({}) => {
             onMouseLeave={handleMouseLeave}
             ref={cartIconRef}
         >
-            <div className="flex flex-col justify-center items-center cursor-pointer" onClick={() => navigateTo('/pages/cart')}>
+            <div className="flex flex-col justify-center items-center cursor-pointer" onClick={() => navigateTo('/cart/')}>
                 <IoCartOutline size={24} />
             </div>
             {cartDropdown && ReactDOM.createPortal(cartDropdownContent, document.body)}
@@ -138,7 +155,7 @@ const CartItem = ({ item, onRemove, onUpdateCount }) => {
     return (
         <div className="hover:bg-gray-200 cursor-pointer w-full">
             <div className="flex flex-row justify-between px-5">
-                    <Image src={item.image} width={150} height={150} alt={item.name} className="py-3"/>
+                    <Image src={item.image} width={150} height={50} alt={item.name} className="py-3"/>
                 <div className="flex flex-col py-2">
                     <div className="flex items-center justify-between">
                         <p className="text-wrap text-sm py-4 px-3">{item.name}</p>
