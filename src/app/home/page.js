@@ -53,21 +53,21 @@ export default function HomePage() {
       {/* Introduction Container */}
       <div
         id="introduction"
-        className="w-dvh flex h-[91vh] flex-col items-center justify-start bg-black/20 bg-cover bg-center bg-no-repeat text-xl text-white bg-blend-overlay"
+        className="flex min-h-screen w-full flex-col items-center justify-start bg-black/20 bg-cover bg-center bg-no-repeat text-xl text-white bg-blend-overlay"
         style={{
           backgroundImage: `url(${LandingBg.src})`,
         }}
       >
-        <h1 className="mt-[150px] p-4 text-7xl font-bold tracking-widest">
+        <h1 className="mt-[150px] p-4 text-4xl font-bold tracking-widest md:text-7xl">
           EMPRESS
         </h1>
-        <p className="w-1/2 text-center">
+        <p className="w-full px-4 text-center md:w-1/2">
           Welcome to Empress! Discover handcrafted bracelets that add timeless
           elegance to any look. Find your perfect piece today!
         </p>
         <Link
           href="/collections"
-          className="group relative z-40 mt-[200px] flex cursor-pointer items-center justify-center overflow-hidden bg-yellow-400 px-6 py-3 font-semibold text-gray-50 transition duration-300 ease-in-out"
+          className="group relative z-40 mt-[100px] flex cursor-pointer items-center justify-center overflow-hidden bg-yellow-400 px-6 py-3 font-semibold text-gray-50 transition duration-300 ease-in-out md:mt-[200px]"
         >
           <div className="flex transform items-center px-2 text-xl tracking-wider transition-transform duration-300 ease-in-out group-hover:-translate-x-6 group-hover:scale-90">
             <p>Browse Collections</p>
@@ -79,13 +79,13 @@ export default function HomePage() {
       </div>
 
       {/* Products Container */}
-      <div className="w-dvh mt-10 flex h-[85vh] flex-col bg-white p-8 text-xl text-black">
-        <div className="flex items-start justify-start text-5xl font-semibold">
+      <div className="flex min-h-screen w-full flex-col bg-white p-4 text-xl text-black md:p-8">
+        <div className="flex items-start justify-start text-3xl font-semibold md:text-5xl">
           <h1>Products</h1>
         </div>
-        <div className="flex h-full items-center justify-center">
-          <div className="flex max-w-4xl items-center justify-center gap-8">
-            <div className="flex w-1/2 flex-col items-start justify-center text-left">
+        <div className="flex h-full flex-col items-center justify-center md:flex-row">
+          <div className="flex max-w-4xl flex-col items-center justify-center gap-8 md:flex-row">
+            <div className="flex w-full flex-col items-start justify-center text-left md:w-1/2">
               <h1 className="py-2 text-2xl font-semibold">Aurelia</h1>
               <p className="font-semibold italic">Opal • Pearl • Jade Thread</p>
               <p>
@@ -105,22 +105,22 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-
-            <Image src={ProductImg} alt="Product Image" />
+            <Image
+              src={ProductImg}
+              alt="Product Image"
+              className="w-full md:w-1/2"
+            />
           </div>
         </div>
       </div>
 
       {/* About Us Container */}
-      <div className="w-dvh flex h-[85vh] flex-col bg-white p-8 text-xl text-black">
-        <div className="my-10 flex items-start justify-start text-5xl font-semibold">
+      <div className="flex min-h-screen w-full flex-col bg-white p-4 text-xl text-black md:p-8">
+        <div className="my-10 flex items-start justify-start text-3xl font-semibold md:text-5xl">
           <h1>About Us</h1>
         </div>
-        <div className="grid grid-cols-3 gap-6">
-          {" "}
-          {/* Grid layout for 3 columns */}
-          {/* Row 1 */}
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <FiTarget size={66} />
             </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
               craftsmanship, aligning with the Empress ideals.
             </p>
           </div>
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <CiFaceSmile size={65} />
             </div>
@@ -144,7 +144,7 @@ export default function HomePage() {
               luxury accessible.
             </p>
           </div>
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <HiOutlineBolt size={65} />
             </div>
@@ -157,7 +157,7 @@ export default function HomePage() {
             </p>
           </div>
           {/* Row 2 */}
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <LuWrench size={65} />
             </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
               those who value individuality.
             </p>
           </div>
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <BiStore size={65} />
             </div>
@@ -181,7 +181,7 @@ export default function HomePage() {
               shoppers.
             </p>
           </div>
-          <div className="flex flex-col items-start justify-start border border-black p-6">
+          <div className="flex flex-col items-start justify-start border border-black p-4 md:p-6">
             <div className="my-2 text-yellow-300">
               <IoHammerOutline size={65} />
             </div>
@@ -197,34 +197,28 @@ export default function HomePage() {
       </div>
 
       {/* Reviews Container */}
-      <div className="w-dvh flex h-[95vh] flex-col bg-white p-8 text-xl text-black">
-        <div className="my-10 flex items-start justify-start text-5xl font-semibold">
+      <div className="flex min-h-screen w-full flex-col bg-white p-4 text-xl text-black md:p-8">
+        <div className="my-10 flex items-start justify-start text-3xl font-semibold md:text-5xl">
           <h1>What Our Customers Say</h1>
         </div>
         <div className="flex w-full cursor-pointer flex-col items-center justify-center">
           {/* Top 4 Comments */}
-          <div className="grid w-full grid-cols-4 gap-6">
-            {" "}
-            {/* Grid layout for 4 columns */}
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              {" "}
-              {/* Flex column to align content to bottom */}
-              <div className="text-2xl font-semibold">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>
                   "I absolutely adore my Empress bracelet! It's now my favourite
                   piece."
                 </p>
               </div>
               <div className="mt-auto flex items-center p-4">
-                {" "}
-                {/* Align to bottom */}
                 <div className="px-3">
                   <Image
                     src={ProfilePic}
                     height={50}
                     width={50}
                     alt="User Profile Pic"
-                    className="rounded-full border-2 border-black" // Circular image with black border
+                    className="rounded-full border-2 border-black"
                   />
                 </div>
                 <div>
@@ -232,8 +226,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              <div className="text-2xl font-semibold">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>
                   "I bought the Empress bracelet as a gift for my wife, and she
                   hasn’t taken it off since! The quality is outstanding, and it
@@ -255,8 +249,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              <div className="text-2xl font-semibold">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>"I’ve never been more impressed with a piece of jewelry."</p>
               </div>
               <div className="mt-auto flex items-center p-4">
@@ -274,8 +268,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              <div className="text-2xl font-semibold">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>
                   "The bracelet I ordered is elegant and well-made, and the
                   customization process was so easy."
@@ -299,11 +293,9 @@ export default function HomePage() {
           </div>
 
           {/* Bottom 2 Comments */}
-          <div className="mt-6 grid w-full grid-cols-2 gap-6">
-            {" "}
-            {/* Reduced gap between rows */}
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              <div className="text-2xl font-semibold">
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>
                   "I’ve been searching for a high-quality bracelet that doesn’t
                   break the bank, and Empress delivered! The design is chic, and
@@ -325,8 +317,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-between bg-gray-200 p-6">
-              <div className="text-2xl font-semibold">
+            <div className="flex flex-col justify-between bg-gray-200 p-4 md:p-6">
+              <div className="text-xl font-semibold md:text-2xl">
                 <p>
                   "Empress exceeded my expectations. The bracelet I designed for
                   my sister was stunning, and she was thrilled with it. The
