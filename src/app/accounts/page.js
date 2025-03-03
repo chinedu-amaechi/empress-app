@@ -4,9 +4,10 @@ import { FaRegUserCircle, FaBarcode } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import PersonalInformation from '../ui/personalinfo';
 import OrderHistory from '../ui/orderhistory';
+import Billing from "../ui/billingandpayment";
 
 export default function AccountPage() {
-    const [activeComponent, setActiveComponent] = useState("personalInfo"); // Default to Order History
+    const [activeComponent, setActiveComponent] = useState("personalInfo");
 
     const handleLinkClick = (component) => {
         setActiveComponent(component);
@@ -35,7 +36,10 @@ export default function AccountPage() {
                     >
                         Personal Information
                     </p>
-                    <p className="hover:text-orange-500 hover:scale-105">Billing and Payments</p>
+                    <p className={`hover:text-orange-500 hover:scale-105 ${
+                            activeComponent === "billingAndPayments" ? "text-orange-500" : ""
+                        }`}
+                        onClick={() => handleLinkClick("billingAndPayments")}>Billing and Payments</p>
                     <p
                         className={`hover:text-orange-500 hover:scale-105 ${
                             activeComponent === "orderHistory" ? "text-orange-500" : ""
@@ -44,9 +48,8 @@ export default function AccountPage() {
                     >
                         My Orders
                     </p>
-                    <p className="hover:text-orange-500 hover:scale-105">Gift Cards</p>
                 </div>
-                <button className="tracking-wide py-3 bg-red-500 rounded-full text-white">
+                <button className="font-semibold hover:text-red-600 hover:bg-red-100 tracking-wide py-3 bg-red-500 rounded-full text-white border-2 border-red-500">
                     Sign out
                 </button>
             </div>
@@ -83,6 +86,17 @@ export default function AccountPage() {
                                 transition={{ duration: 0.3 }}
                             >
                                 <OrderHistory />
+                            </motion.div>
+                        )}
+                        {activeComponent === "billingAndPayments" && (
+                            <motion.div
+                                key="billingAndPayments"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <Billing/>
                             </motion.div>
                         )}
                     </AnimatePresence>
