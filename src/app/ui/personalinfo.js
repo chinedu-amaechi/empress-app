@@ -6,6 +6,7 @@ import { SlCalender } from "react-icons/sl";
 import { CiGlobe } from "react-icons/ci";
 import { FaLanguage } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
+import { MdModeEdit } from "react-icons/md";
 
 export default function PersonalInformation() {
     return(
@@ -23,7 +24,10 @@ export default function PersonalInformation() {
                             <p className="text-xl font-semibold tracking-wide">Name</p>
                             <FaRegUserCircle size={30} className="text-orange-500"/>
                         </div>
-                        <p className="text-gray-600">John Doe</p>
+                        <div className="flex space-x-2 items-center">
+                            <p className="text-gray-600">John Doe</p>
+                            <MdModeEdit size={15} className="text-blue-500"/>
+                        </div>
                     </div>
 
                     {/* DOB Box  */}
@@ -32,7 +36,10 @@ export default function PersonalInformation() {
                             <p className="text-xl font-semibold tracking-wide">Date of Birth</p>
                             <SlCalender size={30} className="text-orange-500"/>
                         </div>
-                        <p className="text-gray-600">27th July, 2005</p>
+                        <div className="flex space-x-2 items-center">
+                            <p className="text-gray-600">27th July, 2005</p>
+                            <MdModeEdit size={15} className="text-blue-500"/>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-between p-5 space-x-5">
@@ -43,7 +50,10 @@ export default function PersonalInformation() {
                             <p className="text-xl font-semibold tracking-wide">Country, Region</p>
                             <CiGlobe size={30} className="text-orange-500"/>
                         </div>
+                        <div className="flex space-x-1 items-center">
                         <p className="text-gray-600">Canada</p>
+                        <MdModeEdit size={15} className="text-blue-500"/>
+                        </div>
                     </div>
 
                     {/* Language Box  */}
@@ -52,7 +62,10 @@ export default function PersonalInformation() {
                             <p className="text-xl font-semibold tracking-wide">Language</p>
                             <FaLanguage size={30} className="text-orange-500"/>
                         </div>
-                        <p className="text-gray-600">English</p>
+                        <div className="flex space-x-1 items-center">
+                            <p className="text-gray-600">English</p>
+                            <MdModeEdit size={15} className="text-blue-500"/>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-between p-5 space-x-5">

@@ -94,7 +94,7 @@ const CartDropdown = ({}) => {
                     <ul className="space-y-1 flex flex-col items-center">
                         <li className="text-gray-500 text-xl">Your cart is empty</li>
                         <li className="text-gray-500">
-                            <button className="bg-black py-3 px-[80px] text-white hover:bg-gray-800">
+                            <button className="bg-black py-3 px-[80px] text-white hover:bg-gray-800" onClick={()=> navigateTo('/product-store/')}>
                                 Continue Shopping
                             </button>
                         </li>

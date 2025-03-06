@@ -16,8 +16,8 @@ import { useRouter } from 'next/navigation';
 const CartPage = () => {
   // Local cart data array
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Product 1", price: 29.99, image: "/bracelet-01.jpg", count: 1 },
-    { id: 2, name: "Product 2", price: 49.99, image: "/bracelet-02.jpg", count: 1 },
+    { id: 1, name: "Product 1", price: 29.99, image: "/bracelet-01.jpg", count: 1, size:'M' },
+    { id: 2, name: "Product 2", price: 49.99, image: "/bracelet-02.jpg", count: 1, size:'XL' },
     // Add more items as needed
   ]);
 
@@ -119,7 +119,11 @@ const CartPage = () => {
                 <div className='flex items-center justify-between w-full'>
                   <div className='flex items-center space-x-5 text-xl font-semibold'>
                     <Image src={item.image} width={200} height={100} alt={item.name} className='rounded-xl' />
-                    <p>{item.name}</p>
+                    <div>
+                      <p>{item.name}</p>
+                      <p className='text-sm text-gray-500'>Size: {item.size}</p>
+
+                    </div>
                   </div>
                   <div className='flex items-center justify-center text-xl space-x-5'>
                     <button
@@ -142,7 +146,7 @@ const CartPage = () => {
                   >
                     <FaRegTrashCan />
                   </button>
-                  <p className='text-2xl font-semibold'>${item.price}.00</p>
+                  <p className='text-2xl font-semibold'>${item.price}</p>
                 </div>
               </li>
             ))}

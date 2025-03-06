@@ -6,11 +6,38 @@ import {
   FaStarHalfAlt,
   FaRegStar,
   FaHeart,
-  FaCheck,
+  FaCheck, FaChevronLeft, FaChevronRight
 } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 
 export default function ProductCard({ name, price, image, rating, reviews, onClick }) {
+  const productImages = [
+    "/bracelet-01.jpg",
+    "/bracelet-02.jpg",
+    "/bracelet-03.jpg",
+    "/bracelet-04.jpg",
+    "/bracelet-05.jpg",
+    "/bracelet-06.jpg",
+    "/bracelet-07.jpg",
+    "/bracelet-08.jpg",
+    "/bracelet-09.jpg",
+    "/bracelet-10.jpg",
+    "/bracelet-11.jpg",
+  ]; // Array of product images
+  const [currentImage, setCurrentImage] = useState(0);
+  const nextImage = (event) => {
+    event.stopPropagation();
+    setCurrentImage((prev) => (prev + 1) % productImages.length);
+  };
+
+  // Function to go to the previous image
+  const prevImage = (event) => {
+    event.stopPropagation();
+    setCurrentImage(
+      (prev) => (prev - 1 + productImages.length) % productImages.length,
+    );
+  };
+
   const [isHovered, setIsHovered] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false); // State for cart button
   const [isWishlistClicked, setIsWishlistClicked] = useState(false); // State for wishlist button
@@ -43,7 +70,7 @@ export default function ProductCard({ name, price, image, rating, reviews, onCli
       {/* Product Image */}
       <div
         className="relative h-56 w-full bg-cover bg-center transition-all duration-300 sm:h-48"
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${productImages[currentImage]})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -70,6 +97,25 @@ export default function ProductCard({ name, price, image, rating, reviews, onCli
             <PiShoppingCartSimpleFill className="text-gray-700" /> // Show cart icon by default
           )}
         </div>
+        {isHovered && (
+          <>
+            {/* Left Arrow */}
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
+              onClick={prevImage}
+            >
+              <FaChevronLeft />
+            </button>
+
+            {/* Right Arrow */}
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
+              onClick={nextImage}
+            >
+              <FaChevronRight />
+            </button>
+          </>
+        )}
       </div>
 
       {/* Rating & Reviews */}
