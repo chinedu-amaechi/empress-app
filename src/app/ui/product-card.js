@@ -6,129 +6,89 @@ import {
   FaStarHalfAlt,
   FaRegStar,
   FaHeart,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa"; // Import star icons and arrows
-import { PiShoppingCartSimpleFill } from "react-icons/pi"; // Better cart icon
+  FaCheck,
+} from "react-icons/fa";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
 
-export default function ProductCard() {
-  const rating = 4.5; // Example rating
-  const totalReviews = 120; // Example total reviews
-  const productImages = [
-    "/bracelet-01.jpg",
-    "/bracelet-02.jpg",
-    "/bracelet-03.jpg",
-    "/bracelet-04.jpg",
-    "/bracelet-05.jpg",
-    "/bracelet-06.jpg",
-    "/bracelet-07.jpg",
-    "/bracelet-08.jpg",
-    "/bracelet-09.jpg",
-    "/bracelet-10.jpg",
-    "/bracelet-11.jpg",
-  ]; // Array of product images
-  const [currentImage, setCurrentImage] = useState(0);
+export default function ProductCard({ name, price, image, rating, reviews, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isCartClicked, setIsCartClicked] = useState(false); // State for cart button
+  const [isWishlistClicked, setIsWishlistClicked] = useState(false); // State for wishlist button
 
-  // Function to go to the next image
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % productImages.length);
+  const handleCartClick = (event) => {
+    event.stopPropagation();
+    setIsCartClicked(true); // Change to FaCheck
+    setTimeout(() => {
+      setIsCartClicked(false); // Revert back to cart icon after 1 second
+    }, 1000);
+    // Add your cart logic here
+    console.log("Add to cart clicked");
   };
 
-  // Function to go to the previous image
-  const prevImage = () => {
-    setCurrentImage(
-      (prev) => (prev - 1 + productImages.length) % productImages.length,
-    );
+  const handleHeartClick = (event) => {
+    event.stopPropagation();
+    setIsWishlistClicked(true); // Change to FaCheck
+    setTimeout(() => {
+      setIsWishlistClicked(false); // Revert back to heart icon after 1 second
+    }, 1000);
+    // Add your wishlist logic here
+    console.log("Add to wishlist clicked");
   };
 
   return (
-    <div className="w-fit overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 shadow-lg transition-shadow duration-300 hover:shadow-xl">
-      {/* Product Image with Icons */}
+    <div
+      className="w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 shadow-lg transition-shadow duration-300 hover:shadow-xl cursor-pointer"
+      onClick={onClick} // Opens product modal
+    >
+      {/* Product Image */}
       <div
         className="relative h-56 w-full bg-cover bg-center transition-all duration-300 sm:h-48"
-        style={{ backgroundImage: `url(${productImages[currentImage]})` }}
+        style={{ backgroundImage: `url(${image})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Wishlist Heart Icon */}
-        <div className="absolute left-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-red-100 sm:left-3 sm:top-3 sm:p-3">
-          <FaHeart className="text-sm text-red-500 sm:text-lg" />
+        {/* Wishlist Icon */}
+        <div
+          className="absolute left-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md hover:scale-110 hover:bg-red-100"
+          onClick={handleHeartClick}
+        >
+          {isWishlistClicked ? (
+            <FaCheck className="text-green-500" /> // Show FaCheck when clicked
+          ) : (
+            <FaHeart className="text-red-500" /> // Show FaHeart by default
+          )}
         </div>
 
         {/* Cart Icon */}
-        <div className="absolute right-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-gray-100 sm:right-3 sm:top-3 sm:p-3">
-          <PiShoppingCartSimpleFill className="text-sm text-gray-700 sm:text-lg" />
+        <div
+          className="absolute right-2 top-2 cursor-pointer rounded-full bg-white p-2 shadow-md hover:scale-110 hover:bg-gray-100"
+          onClick={handleCartClick}
+        >
+          {isCartClicked ? (
+            <FaCheck className="text-green-500" /> // Show FaCheck when clicked
+          ) : (
+            <PiShoppingCartSimpleFill className="text-gray-700" /> // Show cart icon by default
+          )}
         </div>
-
-        {/* Arrows for image switching (only show on hover) */}
-        {isHovered && (
-          <>
-            {/* Left Arrow */}
-            <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
-              onClick={prevImage}
-            >
-              <FaChevronLeft className="text-lg" />
-            </button>
-
-            {/* Right Arrow */}
-            <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-2 text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-opacity-80"
-              onClick={nextImage}
-            >
-              <FaChevronRight className="text-lg" />
-            </button>
-          </>
-        )}
       </div>
 
       {/* Rating & Reviews */}
       <div className="mt-3 flex items-center gap-1 px-2">
-        {/* Star Rating */}
         {Array.from({ length: 5 }, (_, index) => {
-          if (rating >= index + 1)
-            return (
-              <FaStar
-                key={index}
-                className="text-sm text-yellow-500 sm:text-lg"
-              />
-            );
-          else if (rating >= index + 0.5)
-            return (
-              <FaStarHalfAlt
-                key={index}
-                className="text-sm text-yellow-500 sm:text-lg"
-              />
-            );
-          else
-            return (
-              <FaRegStar
-                key={index}
-                className="text-sm text-gray-400 sm:text-lg"
-              />
-            );
+          if (rating >= index + 1) return <FaStar key={index} className="text-yellow-500" />;
+          else if (rating >= index + 0.5) return <FaStarHalfAlt key={index} className="text-yellow-500" />;
+          return <FaRegStar key={index} className="text-gray-400" />;
         })}
-
-        {/* Number of Reviews */}
-        <p className="ml-2 text-xs text-gray-600 sm:text-sm">
-          ({totalReviews} reviews)
-        </p>
+        <p className="ml-2 text-xs text-gray-600">({reviews} reviews)</p>
       </div>
 
       {/* Product Details */}
       <div className="p-2 sm:p-4">
-        <h1 className="text-lg font-semibold text-gray-800 sm:text-xl">
-          Bracelet 1
-        </h1>
-        <p className="mt-1 text-xs text-gray-600 hidden md:block">  
-          Elegant and stylish bracelet to elevate your look.
-        </p>
+        <h1 className="text-lg font-semibold text-gray-800">{name}</h1>
+        <p className="mt-1 text-xs text-gray-600 hidden md:block">Elegant and stylish bracelet.</p>
 
         {/* Price */}
-        <div className="mt-2 flex items-center justify-start sm:mt-3">
-          <p className="text-base font-bold text-[#1E96FC] sm:text-lg">$100</p>
-        </div>
+        <p className="mt-2 text-lg font-bold text-[#1E96FC]">${price}</p>
       </div>
     </div>
   );
